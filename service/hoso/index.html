@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediCare Blockchain - Electronic Health Records</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: white;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #0B9A95;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .nav-links a.active {
+            color: #0B9A95;
+            border-bottom: 2px solid #0B9A95;
+            padding-bottom: 5px;
+        }
+
+        .connect-btn {
+            background-color: #0B9A95;
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .hero {
+            background-color: #0277BD;
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-header h2 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .form-section {
+            margin-bottom: 2rem;
+        }
+
+        .form-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #333;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.7rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            height: 100px;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .btn-mint {
+            background-color: #0B9A95;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+
+        .btn-mint:hover {
+            background-color: #098580;
+        }
+
+        .feature-list {
+            margin-top: 1.5rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .feature-item::before {
+            content: "•";
+            color: #0B9A95;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        footer {
+            background-color: #f5f5f5;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            color: #666;
+            border-top: 1px solid #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="#" class="logo">MediCare Blockchain</a>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#" class="active">Services</a>
+            <a href="#">Blockchain Health</a>
+        </div>
+        <button class="connect-btn">Connect</button>
+    </nav>
+
+    <div class="hero">
+        <h1>Electronic Health Records (EHR)</h1>
+        <p>Secure and decentralized storage of patient medical records with complete access control</p>
+    </div>
+
+    <main class="content">
+        <div class="section-header">
+            <h2>NFT Medical Record Minting</h2>
+            <p>Create a secure, immutable medical record as an NFT using HL7 FHIR standards</p>
+        </div>
+
+        <div class="card">
+            <form id="nft-mint-form">
+                <div class="form-section">
+                    <h3>Patient Information</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="patient-id">Patient Identifier</label>
+                            <input type="text" id="patient-id" placeholder="Enter patient identifier">
+                        </div>
+                        <div class="form-group">
+                            <label for="patient-name">Patient Name</label>
+                            <input type="text" id="patient-name" placeholder="Full name">
+                        </div>
+                        <div class="form-group">
+                            <label for="patient-dob">Date of Birth</label>
+                            <input type="date" id="patient-dob">
+                        </div>
+                        <div class="form-group">
+                            <label for="patient-gender">Gender</label>
+                            <select id="patient-gender">
+                                <option value="">Select gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                                <option value="unknown">Unknown</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Encounter Information</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="encounter-date">Encounter Date</label>
+                            <input type="datetime-local" id="encounter-date">
+                        </div>
+                        <div class="form-group">
+                            <label for="encounter-type">Encounter Type</label>
+                            <select id="encounter-type">
+                                <option value="">Select type</option>
+                                <option value="ambulatory">Ambulatory</option>
+                                <option value="emergency">Emergency</option>
+                                <option value="inpatient">Inpatient</option>
+                                <option value="virtual">Virtual</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="provider-id">Provider Identifier</label>
+                            <input type="text" id="provider-id" placeholder="Provider NPI">
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Location</label>
+                            <input type="text" id="location" placeholder="Facility name">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Clinical Data</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="condition">Condition/Diagnosis (SNOMED CT)</label>
+                            <input type="text" id="condition" placeholder="SNOMED CT code">
+                        </div>
+                        <div class="form-group">
+                            <label for="condition-desc">Diagnosis Description</label>
+                            <input type="text" id="condition-desc" placeholder="Condition description">
+                        </div>
+                        <div class="form-group">
+                            <label for="observation">Observation/Finding</label>
+                            <input type="text" id="observation" placeholder="Observation code (LOINC)">
+                        </div>
+                        <div class="form-group">
+                            <label for="observation-value">Observation Value</label>
+                            <input type="text" id="observation-value" placeholder="Value with units">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Medication & Procedures</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="medication">Medication (RxNorm)</label>
+                            <input type="text" id="medication" placeholder="RxNorm code">
+                        </div>
+                        <div class="form-group">
+                            <label for="medication-dose">Dosage Instructions</label>
+                            <input type="text" id="medication-dose" placeholder="Dose, frequency, route">
+                        </div>
+                        <div class="form-group">
+                            <label for="procedure">Procedure (CPT/HCPCS)</label>
+                            <input type="text" id="procedure" placeholder="Procedure code">
+                        </div>
+                        <div class="form-group">
+                            <label for="procedure-desc">Procedure Description</label>
+                            <input type="text" id="procedure-desc" placeholder="Description">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Blockchain Record Settings</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="access-level">Access Level</label>
+                            <select id="access-level">
+                                <option value="patient-only">Patient Only</option>
+                                <option value="treating-provider">Treating Providers</option>
+                                <option value="research">Research (De-identified)</option>
+                                <option value="emergency">Emergency Access</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="consent-status">Consent Status</label>
+                            <select id="consent-status">
+                                <option value="granted">Consent Granted</option>
+                                <option value="restricted">Restricted Consent</option>
+                                <option value="denied">Consent Denied</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="record-expiry">Record Expiry (Optional)</label>
+                            <input type="date" id="record-expiry">
+                        </div>
+                        <div class="form-group">
+                            <label for="additional-notes">Additional Notes</label>
+                            <textarea id="additional-notes" placeholder="Any additional information..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="btn-container">
+                    <button type="submit" class="btn-mint">Mint Medical Record NFT</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="card">
+            <div class="section-header" style="text-align: left; margin-bottom: 1rem;">
+                <h2>Benefits of Blockchain EHRs</h2>
+            </div>
+            <div class="feature-list">
+                <div class="feature-item">Immutable record keeping ensures medical data cannot be tampered with</div>
+                <div class="feature-item">Patient-controlled access allows you to determine who can view your records</div>
+                <div class="feature-item">Cross-institutional sharing enables seamless coordination between healthcare providers</div>
+                <div class="feature-item">Cryptographic security protects sensitive patient information</div>
+                <div class="feature-item">Transparent audit trail documents all access to records</div>
+                <div class="feature-item">HL7 FHIR compliance ensures interoperability with existing healthcare systems</div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 MediCare Blockchain. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('nft-mint-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('NFT minting functionality would connect to blockchain here. Form submitted successfully!');
+        });
+    </script>
+</body>
+</html>

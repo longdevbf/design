@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediCare Blockchain - Services</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        header {
+            background-color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #0a9396;
+        }
+        
+        .navigation {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            justify-content: center;
+        }
+        
+        .nav-links li {
+            margin: 0 15px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #0a9396;
+        }
+        
+        .active {
+            color: #0a9396 !important;
+            border-bottom: 2px solid #0a9396;
+            padding-bottom: 5px;
+        }
+        
+        .connect-btn {
+            background-color: #0a9396;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .page-header {
+            background-color: #0077b6;
+            color: white;
+            padding: 60px 0 30px;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        
+        .page-header p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .services-section {
+            padding: 60px 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-header h2 {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .section-header p {
+            font-size: 16px;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-icon {
+            height: 160px;
+            background-color: #e0f7fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: #0a9396;
+        }
+        
+        .service-content {
+            padding: 30px;
+        }
+        
+        .service-content h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .service-content p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .service-content ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .service-content li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+        
+        .service-link {
+            display: inline-block;
+            color: #0a9396;
+            font-weight: 500;
+            text-decoration: none;
+            padding-bottom: 3px;
+            border-bottom: 1px solid #0a9396;
+            transition: all 0.3s ease;
+        }
+        
+        .service-link:hover {
+            color: #077e80;
+            border-bottom-color: #077e80;
+        }
+        
+        .specialized-services {
+            background-color: #f0f9fa;
+            padding: 60px 0;
+        }
+        
+        .pricing-section {
+            padding: 60px 0;
+        }
+        
+        .pricing-table {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .pricing-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            padding: 40px 30px;
+            width: 100%;
+            max-width: 350px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .pricing-card:hover {
+            transform: scale(1.03);
+        }
+        
+        .pricing-card.featured {
+            border: 2px solid #0a9396;
+            position: relative;
+            z-index: 1;
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.featured:hover {
+            transform: scale(1.08);
+        }
+        
+        .pricing-card.featured::before {
+            content: "Most Popular";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #0a9396;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .pricing-name {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .pricing-price {
+            font-size: 36px;
+            font-weight: bold;
+            color: #0a9396;
+            margin-bottom: 20px;
+        }
+        
+        .pricing-price span {
+            font-size: 16px;
+            color: #666;
+            font-weight: normal;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .pricing-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            color: #555;
+        }
+        
+        .pricing-btn {
+            display: inline-block;
+            background-color: #0a9396;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+        
+        .pricing-btn:hover {
+            background-color: #077e80;
+        }
+        
+        .contact-section {
+            background-color: #0077b6;
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .contact-section h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        
+        .contact-section p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .contact-btn {
+            display: inline-block;
+            background-color: white;
+            color: #0077b6;
+            padding: 15px 40px;
+            border-radius: 5px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-btn:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-3px);
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .footer-content p {
+            margin: 15px 0;
+            color: #ccc;
+        }
+        
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .pricing-table {
+                flex-wrap: wrap;
+            }
+            
+            .pricing-card {
+                margin-bottom: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .pricing-card {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">MediCare Blockchain</div>
+            <div class="navigation">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html" class="active">Services</a></li>
+                    <li><a href="#">Blockchain Health</a></li>
+                </ul>
+            </div>
+            <button class="connect-btn">Connect</button>
+        </div>
+    </header>
+    
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Services</h1>
+            <p>Discover how blockchain technology can transform healthcare delivery and data management</p>
+        </div>
+    </section>
+    
+    <section class="services-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Core Blockchain Services</h2>
+                <p>Innovative solutions powered by blockchain technology to enhance healthcare security, transparency, and efficiency</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <div class="service-content">
+                        <h3>Electronic Health Records (EHR)</h3>
+                        <p>Secure and decentralized storage of patient medical records with complete access control.</p>
+                        <ul>
+                            <li>Immutable record keeping</li>
+                            <li>Patient-controlled access</li>
+                            <li>Cross-institutional sharing</li>
+                        </ul>
+                        <a href="#" class="service-link">Learn more</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🔄</div>
+                    <div class="service-content">
+                        <h3>Smart Contracts for Claims</h3>
+                        <p>Automate insurance claims processing and verification through blockchain-based smart contracts.</p>
+                        <ul>
+                            <li>Reduced processing time</li>
+                            <li>Elimination of intermediaries</li>
+                            <li>Transparent audit trail</li>
+                        </ul>
+                        <a href="#" class="service-link">Learn more</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🔒</div>
+                    <div class="service-content">
+                        <h3>Secure Patient Identity</h3>
+                        <p>Blockchain-based identity management system to prevent fraud and ensure data integrity.</p>
+                        <ul>
+                            <li>Biometric verification</li>
+                            <li>Single digital identity</li>
+                            <li>Controlled information sharing</li>
+                        </ul>
+                        <a href="#" class="service-link">Learn more</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">💊</div>
+                    <div class="service-content">
+                        <h3>Pharmaceutical Supply Chain</h3>
+                        <p>Track medications through the entire supply chain to ensure authenticity and eliminate counterfeit drugs.</p>
+                        <ul>
+                            <li>End-to-end traceability</li>
+                            <li>Authenticity verification</li>
+                            <li>Compliance automation</li>
+                        </ul>
+                        <a href="#" class="service-link">Learn more</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <div class="service-content">
+                        <h3>Telemedicine Platform</h3>
+                        <p>Secure virtual consultations with blockchain-based payment processing and health data sharing.</p>
+                        <ul>
+                            <li>Encrypted video consultations</li>
+                            <li>Secure payment processing</li>
+                            <li>Verifiable consultation records</li>
+                        </ul>
+                        <a href="#" class="service-link">Learn more</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🧬</div>
+                    <div class="service-content">
+                        <h3>Research Data Marketplace</h3>
+                        <p>Platform for securely sharing anonymized healthcare data for research purposes with patient consent.</p>
+                        <ul>
+                            <li>Data monetization options</li>
+                            <li>Consent management</li>
+                            <li>Anonymization protocols</li>
+                        </ul>
+                        <a href="#" class="service-link">Learn more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="specialized-services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Specialized Solutions</h2>
+                <p>Tailored blockchain applications for specific healthcare needs</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">📈</div>
+                    <div class="service-content">
+                        <h3>Healthcare Analytics</h3>
+                        <p>Advanced analytics platform with secure data sharing between stakeholders.</p>
+                        <ul>
+                            <li>Predictive health modeling</li>
+                            <li>Population health insights</li>
+                            <li>Privacy-preserving analysis</li>
+                        </ul>
+                        <a href="#" class="service-link">Learn more</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">💻</div>
+                    <div class="service-content">
+                        <h3>Clinical Trials Management</h3>
+                        <p>Blockchain-based platform for managing clinical trials with improved transparency and data integrity.</p>
+                        <ul>
+                            <li>Patient recruitment</li>
+                            <li>Consent tracking</li>
+                            <li>Result verification</li>
+                        </ul>
+                        <a href="#" class="service-link">Learn more</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🏥</div>
+                    <div class="service-content">
+                        <h3>Provider Credentialing</h3>
+                        <p>Streamline healthcare provider credentialing process using blockchain verification.</p>
+                        <ul>
+                            <li>Instant verification</li>
+                            <li>Permanent credential record</li>
+                            <li>Reduced administrative burden</li>
+                        </ul>
+                        <a href="#" class="service-link">Learn more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="pricing-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Pricing Plans</h2>
+                <p>Flexible pricing options to meet your healthcare blockchain needs</p>
+            </div>
+            
+            <div class="pricing-table">
+                <div class="pricing-card">
+                    <h3 class="pricing-name">Basic</h3>
+                    <div class="pricing-price">$199<span>/month</span></div>
+                    <ul class="pricing-features">
+                        <li>Electronic Health Records</li>
+                        <li>Patient Identity Management</li>
+                        <li>Basic Analytics</li>
+                        <li>Single Institution Support</li>
+                        <li>Email Support</li>
+                    </ul>
+                    <a href="#" class="pricing-btn">Get Started</a>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <h3 class="pricing-name">Professional</h3>
+                    <div class="pricing-price">$499<span>/month</span></div>
+                    <ul class="pricing-features">
+                        <li>All Basic Features</li>
+                        <li>Smart Contracts for Claims</li>
+                        <li>Telemedicine Platform</li>
+                        <li>Multi-Institution Support</li>
+                        <li>24/7 Priority Support</li>
+                    </ul>
+                    <a href="#" class="pricing-btn">Get Started</a>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3 class="pricing-name">Enterprise</h3>
+                    <div class="pricing-price">Custom<span> pricing</span></div>
+                    <ul class="pricing-features">
+                        <li>All Professional Features</li>
+                        <li>Research Data Marketplace</li>
+                        <li>Clinical Trials Management</li>
+                        <li>Custom Integration</li>
+                        <li>Dedicated Account Manager</li>
+                    </ul>
+                    <a href="#" class="pricing-btn">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="contact-section">
+        <div class="container">
+            <h2>Ready to Transform Healthcare?</h2>
+            <p>Talk to our blockchain specialists about how we can help implement secure and efficient healthcare solutions for your organization.</p>
+            <a href="#" class="contact-btn">Schedule a Consultation</a>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">MediCare Blockchain</div>
+                <p>Revolutionizing healthcare through secure blockchain technology</p>
+                <p>&copy; 2025 MediCare Blockchain. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Asset Lock - MediCare Blockchain</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            padding: 20px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #07a396;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        nav ul li a.active {
+            color: #07a396;
+            border-bottom: 2px solid #07a396;
+            padding-bottom: 5px;
+        }
+        
+        .connect-btn {
+            background-color: #07a396;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background-color: #0077b6;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+        
+        .hero p {
+            font-size: 16px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding: 60px 0;
+        }
+        
+        .asset-lock-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        /* Asset Lock Form */
+        .asset-lock-form {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .form-title {
+            font-size: 22px;
+            margin-bottom: 25px;
+            color: #333;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 15px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #07a396;
+        }
+        
+        .form-help {
+            font-size: 14px;
+            color: #777;
+            margin-top: 6px;
+        }
+        
+        .submit-btn {
+            background-color: #07a396;
+            color: white;
+            border: none;
+            padding: 14px 25px;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background-color: #058b7e;
+        }
+        
+        /* Process Steps */
+        .process-steps {
+            margin-top: 50px;
+        }
+        
+        .steps-title {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .steps-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+        
+        .step:not(:last-child):after {
+            content: '';
+            position: absolute;
+            top: 35px;
+            right: -40%;
+            width: 80%;
+            height: 2px;
+            background-color: #ddd;
+        }
+        
+        .step-number {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: #07a396;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0 auto 15px;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .step-description {
+            font-size: 14px;
+            color: #666;
+            max-width: 200px;
+            margin: 0 auto;
+        }
+        
+        /* Transaction History */
+        .transaction-history {
+            margin-top: 60px;
+        }
+        
+        .history-title {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .history-table th,
+        .history-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+        }
+        
+        .history-table th {
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .history-table tbody tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .status {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .status-active {
+            background-color: #e3fcf7;
+            color: #07a396;
+        }
+        
+        .status-completed {
+            background-color: #e3f1fd;
+            color: #2b6cb0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">MediCare Blockchain</div>
+                <nav>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Blockchain Health</a></li>
+                        <li><a href="#" class="active">Doctor Portal</a></li>
+                    </ul>
+                </nav>
+                <button class="connect-btn">Connect</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Doctor Asset Lock</h1>
+            <p>Secure patient payment processing through blockchain-based asset locking</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="main-content">
+        <div class="container">
+            <div class="asset-lock-container">
+                <!-- Asset Lock Form -->
+                <div class="asset-lock-form">
+                    <h3 class="form-title">Lock Patient Payment Assets</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="policyId">Policy ID</label>
+                            <input type="text" id="policyId" placeholder="Enter blockchain policy ID">
+                            <p class="form-help">The unique identifier for the blockchain policy</p>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="assetName">Asset Name</label>
+                            <input type="text" id="assetName" placeholder="Enter asset name">
+                            <p class="form-help">The name of the asset to be locked for payment</p>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="amount">Payment Amount</label>
+                            <input type="number" id="amount" placeholder="Enter amount to be paid">
+                            <p class="form-help">The required payment amount for medical services</p>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="patientId">Patient ID</label>
+                            <input type="text" id="patientId" placeholder="Enter patient blockchain ID">
+                            <p class="form-help">The blockchain identifier for the patient</p>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">Lock Asset</button>
+                    </form>
+                </div>
+                
+                <!-- Process Steps -->
+                <div class="process-steps">
+                    <h3 class="steps-title">How Asset Locking Works</h3>
+                    <div class="steps-container">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <h4 class="step-title">Submit Details</h4>
+                            <p class="step-description">Enter policy ID, asset name, and payment amount</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <h4 class="step-title">Blockchain Verification</h4>
+                            <p class="step-description">Smart contract validates the transaction details</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <h4 class="step-title">Patient Payment</h4>
+                            <p class="step-description">Patient completes payment through secure blockchain wallet</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <h4 class="step-title">Asset Release</h4>
+                            <p class="step-description">Funds are released to healthcare provider</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Transaction History -->
+                <div class="transaction-history">
+                    <h3 class="history-title">Recent Asset Locks</h3>
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Patient ID</th>
+                                <th>Asset</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>04/03/2025</td>
+                                <td>PAT-78932</td>
+                                <td>MED-TOKEN</td>
+                                <td>250.00</td>
+                                <td><span class="status status-active">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td>04/02/2025</td>
+                                <td>PAT-45621</td>
+                                <td>MED-TOKEN</td>
+                                <td>175.50</td>
+                                <td><span class="status status-completed">Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>04/01/2025</td>
+                                <td>PAT-12587</td>
+                                <td>MED-TOKEN</td>
+                                <td>320.75</td>
+                                <td><span class="status status-completed">Completed</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

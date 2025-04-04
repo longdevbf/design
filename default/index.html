@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediCare Blockchain</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        header {
+            background-color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #0a9396;
+        }
+        
+        .navigation {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            justify-content: center;  /* This centers the nav links */
+        }
+        
+        .nav-links li {
+            margin: 0 15px;  /* Equal margin on both sides */
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #0a9396;
+        }
+        
+        .connect-btn {
+            background-color: #0a9396;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .hero {
+            background-color: #0077b6;
+            color: white;
+            padding: 60px 0;
+        }
+        
+        .hero-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .hero-text {
+            width: 50%;
+        }
+        
+        .hero-image {
+            width: 40%;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .hero-text p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .primary-btn {
+            background-color: white;
+            color: #0077b6;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .secondary-btn {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .blockchain-visual {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .block {
+            background-color: #0a9396;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            width: 22%;
+        }
+        
+        .arrow {
+            font-size: 24px;
+            color: #0a9396;
+        }
+        
+        .info-text {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #444;
+        }
+
+        .applications {
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        h2 {
+            font-size: 32px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .app-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .app-card {
+            background-color: white;
+            width: 45%;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+        }
+        
+        .app-icon {
+            margin-right: 15px;
+            font-size: 20px;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .positive {
+            color: #0a9396;
+        }
+        
+        .negative {
+            color: #e76f51;
+        }
+        
+        .wallet-section {
+            padding: 60px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .wallet-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .wallet-options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .wallet-card {
+            width: 48%;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .wallet-card:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .wallet-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #f1f1f1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+        
+        .meta-icon {
+            background-color: #f6851b;
+            color: white;
+        }
+        
+        .wallet-connect-icon {
+            background-color: #3b99fc;
+            color: white;
+        }
+        
+        .coinbase-icon {
+            background-color: #0052ff;
+            color: white;
+        }
+        
+        .medicoin-icon {
+            background-color: #0a9396;
+            color: white;
+        }
+        
+        .wallet-note {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #777;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content {
+                flex-direction: column;
+            }
+            
+            .hero-text, .hero-image {
+                width: 100%;
+            }
+            
+            .hero-image {
+                margin-top: 30px;
+            }
+            
+            .app-card, .wallet-card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">MediCare Blockchain</div>
+            <div class="navigation">
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Blockchain Health</a></li>
+                </ul>
+                <button class="connect-btn">Connect</button>
+            </div>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h1>Smart Healthcare on Blockchain</h1>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <p>Combining cutting-edge technology with blockchain to deliver secure and intelligent healthcare services</p>
+                    <div class="buttons">
+                        <button class="primary-btn">Schedule Appointment</button>
+                        <button class="secondary-btn">Blockchain Consultation</button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="blockchain-visual">
+                        <div class="block">Block #1</div>
+                        <span class="arrow">→</span>
+                        <div class="block">Block #2</div>
+                        <span class="arrow">→</span>
+                        <div class="block">Block #3</div>
+                        <span class="arrow">→</span>
+                        <div class="block">Block #n</div>
+                    </div>
+                    <p class="info-text">Medical records are encrypted</p>
+                    <p class="info-text">Data is securely stored and centrally accessible</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="applications">
+        <div class="container">
+            <h2>Blockchain Applications in Healthcare</h2>
+            <div class="app-grid">
+                <div class="app-card">
+                    <div class="app-icon positive">+</div>
+                    <div>Centralized Medical Records</div>
+                </div>
+                <div class="app-card">
+                    <div class="app-icon negative">×</div>
+                    <div>Medical Identity Management</div>
+                </div>
+                <div class="app-card">
+                    <div class="app-icon positive">+</div>
+                    <div>Secure Payment Solutions</div>
+                </div>
+                <div class="app-card">
+                    <div class="app-icon negative">×</div>
+                    <div>Medication Management</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="wallet-section">
+        <div class="container">
+            <h2>Connect Your Blockchain Wallet</h2>
+            <p style="text-align: center; margin-bottom: 30px;">Connect your wallet to securely provide medical records and use centralized services</p>
+            
+            <div class="wallet-container">
+                <h3 style="text-align: center; margin-bottom: 20px;">Choose Connection Method</h3>
+                
+                <div class="wallet-options">
+                    <div class="wallet-card">
+                        <div class="wallet-icon meta-icon">M</div>
+                        <div>MetaMask</div>
+                    </div>
+                    <div class="wallet-card">
+                        <div class="wallet-icon wallet-connect-icon">W</div>
+                        <div>WalletConnect</div>
+                    </div>
+                    <div class="wallet-card">
+                        <div class="wallet-icon coinbase-icon">CB</div>
+                        <div>Coinbase Wallet</div>
+                    </div>
+                    <div class="wallet-card">
+                        <div class="wallet-icon medicoin-icon">M</div>
+                        <div>MediCoin Wallet</div>
+                    </div>
+                </div>
+                
+                <p class="wallet-note">Your data will be encrypted and securely stored on the blockchain</p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

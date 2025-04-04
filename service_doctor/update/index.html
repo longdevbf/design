@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediCare Blockchain - Doctor Update Records</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            color: #333;
+        }
+        
+        header {
+            padding: 20px 0;
+            border-bottom: 1px solid #eaeaea;
+        }
+        
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #0a9396;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+        }
+        
+        .nav-links a.active {
+            color: #0a9396;
+            border-bottom: 2px solid #0a9396;
+        }
+        
+        .connect-btn {
+            background-color: #0a9396;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        
+        .banner {
+            background-color: #0082c8;
+            color: white;
+            padding: 50px 0;
+            text-align: center;
+        }
+        
+        .banner h1 {
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+        
+        .banner p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .main-content {
+            padding: 50px 0;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .btn {
+            background-color: #0a9396;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            display: inline-block;
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            border: 1px solid #0a9396;
+            color: #0a9396;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .checkbox-group input {
+            width: auto;
+        }
+        
+        .info-text {
+            background-color: #e8f4f8;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+        
+        .action-result {
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 4px;
+            display: none;
+        }
+        
+        .action-result.success {
+            background-color: #e8f8e8;
+            color: #2c762c;
+            display: block;
+        }
+        
+        .action-result.error {
+            background-color: #f8e8e8;
+            color: #762c2c;
+            display: block;
+        }
+        
+        .tab-container {
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 30px;
+        }
+        
+        .tabs {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .tabs li {
+            padding: 12px 24px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tabs li.active {
+            border-bottom: 3px solid #0a9396;
+            color: #0a9396;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .two-columns {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .two-columns > div {
+            flex: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .two-columns {
+                flex-direction: column;
+            }
+        }
+        
+        .price-input {
+            position: relative;
+        }
+        
+        .price-input input {
+            padding-left: 30px;
+        }
+        
+        .price-input:before {
+            content: "$";
+            position: absolute;
+            left: 12px;
+            top: 13px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="navbar">
+                <a href="#" class="logo">MediCare Blockchain</a>
+                <div class="nav-links">
+                    <a href="#">Home</a>
+                    <a href="#" class="active">Services</a>
+                    <a href="#">Blockchain Health</a>
+                </div>
+                <button class="connect-btn">Connect</button>
+            </div>
+        </div>
+    </header>
+    
+    <div class="banner">
+        <div class="container">
+            <h1>Doctor Medical Record Update</h1>
+            <p>Update patient medical records and examination data on the blockchain</p>
+        </div>
+    </div>
+    
+    <div class="main-content">
+        <div class="container">
+            <div class="card">
+                <div class="info-text">
+                    As an authorized healthcare provider, you can update patient medical records on the blockchain. Please enter the NFT name, initial data, examination results, and billing information.
+                </div>
+                
+                <div class="tab-container">
+                    <ul class="tabs">
+                        <li class="active" data-tab="record-update">Record Update</li>
+                        <li data-tab="history">Update History</li>
+                    </ul>
+                </div>
+                
+                <div id="record-update" class="tab-content active">
+                    <form id="updateRecordForm">
+                        <div class="form-group">
+                            <label for="nftName">Patient NFT Name:</label>
+                            <input type="text" id="nftName" name="nftName" placeholder="Patient NFT Identifier" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="patientAddress">Patient Blockchain Address:</label>
+                            <input type="text" id="patientAddress" name="patientAddress" placeholder="0x..." required>
+                        </div>
+                        
+                        <div class="two-columns">
+                            <div class="form-group">
+                                <label for="initialData">Initial Medical Data:</label>
+                                <textarea id="initialData" name="initialData" placeholder="Enter initial diagnosis, symptoms, and baseline measurements" required></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="examinationData">New Examination Data:</label>
+                                <textarea id="examinationData" name="examinationData" placeholder="Enter new examination findings, test results, and treatment recommendations" required></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="two-columns">
+                            <div class="form-group">
+                                <label for="diagnosisCode">Diagnosis Code:</label>
+                                <input type="text" id="diagnosisCode" name="diagnosisCode" placeholder="ICD-10 Code">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="treatmentCode">Treatment Code:</label>
+                                <input type="text" id="treatmentCode" name="treatmentCode" placeholder="CPT/HCPCS Code">
+                            </div>
+                        </div>
+                        
+                        <div class="two-columns">
+                            <div class="form-group">
+                                <label for="billingAmount">Billing Amount:</label>
+                                <div class="price-input">
+                                    <input type="number" id="billingAmount" name="billingAmount" min="0" step="0.01" placeholder="0.00" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="billType">Bill Type:</label>
+                                <select id="billType" name="billType" required>
+                                    <option value="">Select billing type</option>
+                                    <option value="consultation">Consultation</option>
+                                    <option value="procedure">Procedure</option>
+                                    <option value="laboratory">Laboratory Services</option>
+                                    <option value="medication">Medication</option>
+                                    <option value="followup">Follow-up Visit</option>
+                                    <option value="emergency">Emergency Care</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="confirmCheck" required>
+                            <label for="confirmCheck">I confirm that this update is accurate and authorized under my medical license</label>
+                        </div>
+                        
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-secondary" onclick="resetForm()">Reset</button>
+                            <button type="submit" class="btn">Update Medical Record</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div id="history" class="tab-content">
+                    <h2>Update History</h2>
+                    <div class="info-text">
+                        Connect your account to view your update history. This will show all your recent medical record updates on the blockchain.
+                    </div>
+                    
+                    <table id="historyTable" style="width: 100%; border-collapse: collapse; margin-top: 20px; display: none;">
+                        <thead>
+                            <tr style="background-color: #f5f5f5;">
+                                <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd;">Date</th>
+                                <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd;">Patient NFT</th>
+                                <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd;">Update Type</th>
+                                <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd;">Billing Amount</th>
+                                <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd;">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- History records will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div id="actionResult" class="action-result"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Tab switching functionality
+        document.querySelectorAll('.tabs li').forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Remove active class from all tabs and content
+                document.querySelectorAll('.tabs li').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding content
+                this.classList.add('active');
+                document.getElementById(this.dataset.tab).classList.add('active');
+            });
+        });
+        
+        function resetForm() {
+            document.getElementById('updateRecordForm').reset();
+            document.getElementById('actionResult').className = 'action-result';
+            document.getElementById('actionResult').textContent = '';
+        }
+        
+        document.getElementById('updateRecordForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const nftName = document.getElementById('nftName').value;
+            const patientAddress = document.getElementById('patientAddress').value;
+            const initialData = document.getElementById('initialData').value;
+            const examinationData = document.getElementById('examinationData').value;
+            const billingAmount = document.getElementById('billingAmount').value;
+            const billType = document.getElementById('billType').value;
+            
+            // Basic validation
+            if (!patientAddress.startsWith('0x') || patientAddress.length < 10) {
+                showError('Please enter a valid patient blockchain address');
+                return;
+            }
+            
+            if (initialData.length < 10) {
+                showError('Please enter more detailed initial medical data');
+                return;
+            }
+            
+            if (examinationData.length < 10) {
+                showError('Please enter more detailed examination data');
+                return;
+            }
+            
+            if (parseFloat(billingAmount) <= 0) {
+                showError('Please enter a valid billing amount');
+                return;
+            }
+            
+            // In a real application, this would call a blockchain function
+            // For demo purposes, we'll just show a success message and log the data
+            showSuccess('Medical record updated successfully! Transaction submitted to the blockchain.');
+            
+            // Add to history table for demonstration
+            addToHistory(nftName, billType, billingAmount);
+            
+            console.log({
+                nftName: nftName,
+                patientAddress: patientAddress,
+                initialData: initialData,
+                examinationData: examinationData,
+                billingAmount: billingAmount,
+                billType: billType
+            });
+        });
+        
+        function addToHistory(nftName, type, amount) {
+            const historyTable = document.getElementById('historyTable');
+            historyTable.style.display = 'table';
+            
+            const tbody = historyTable.querySelector('tbody');
+            const row = document.createElement('tr');
+            
+            const now = new Date();
+            const dateStr = `${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
+            
+            row.innerHTML = `
+                <td style="padding: 12px; border-bottom: 1px solid #eee;">${dateStr}</td>
+                <td style="padding: 12px; border-bottom: 1px solid #eee;">${nftName}</td>
+                <td style="padding: 12px; border-bottom: 1px solid #eee;">${type}</td>
+                <td style="padding: 12px; border-bottom: 1px solid #eee;">$${parseFloat(amount).toFixed(2)}</td>
+                <td style="padding: 12px; border-bottom: 1px solid #eee;"><span style="color: #2c762c;">Confirmed</span></td>
+            `;
+            
+            tbody.prepend(row);
+        }
+        
+        function showError(message) {
+            const resultElement = document.getElementById('actionResult');
+            resultElement.textContent = message;
+            resultElement.className = 'action-result error';
+        }
+        
+        function showSuccess(message) {
+            const resultElement = document.getElementById('actionResult');
+            resultElement.textContent = message;
+            resultElement.className = 'action-result success';
+        }
+    </script>
+</body>
+</html>
