@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Services - MedID</title>
+    <style>
+        :root {
+            --primary-color: #0088c2;
+            --secondary-color: #17a2b8;
+            --dark-color: #333;
+            --light-color: #f4f4f4;
+            --danger-color: #dc3545;
+            --success-color: #28a745;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .connect-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .connect-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Services Grid */
+        .services {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 50px;
+            color: #333;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .service-icon {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .service-icon img {
+            max-height: 80px;
+        }
+        
+        .service-content {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .service-content h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .service-content p {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 8px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: #006799;
+        }
+        
+        /* Lock specific styles */
+        .lock-btn {
+            background-color: var(--danger-color);
+        }
+        
+        .lock-btn:hover {
+            background-color: #bd2130;
+        }
+        
+        /* Unlock specific styles */
+        .unlock-btn {
+            background-color: var(--success-color);
+        }
+        
+        .unlock-btn:hover {
+            background-color: #218838;
+        }
+        
+        /* Blockchain Visualization */
+        .blockchain-visual {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 60px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .blockchain-blocks {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .block {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 0 10px;
+        }
+        
+        .arrow {
+            color: #999;
+            font-size: 24px;
+        }
+        
+        .blockchain-info {
+            text-align: center;
+            color: #666;
+            margin-top: 20px;
+        }
+        
+        .blockchain-info p {
+            margin-bottom: 10px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-section ul li a {
+            color: #ddd;
+            text-decoration: none;
+        }
+        
+        .footer-bottom {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #555;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">MedID</a>
+            <nav class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">Services</a>
+                <a href="#">Blockchain Health</a>
+                <a href="#">Doctor Services</a>
+            </nav>
+            <button class="connect-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+                Connect Eternl
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Doctor Services Portal</h1>
+            <p>Access all your medical practice tools securely on blockchain for enhanced patient care and efficient healthcare management</p>
+        </div>
+    </section>
+
+    <!-- Blockchain Visual -->
+    <div class="container">
+        <div class="blockchain-visual">
+            <div class="blockchain-blocks">
+                <div class="block">Block #1</div>
+                <div class="arrow">→</div>
+                <div class="block">Block #2</div>
+                <div class="arrow">→</div>
+                <div class="block">Block #3</div>
+                <div class="arrow">→</div>
+                <div class="block">Block #n</div>
+            </div>
+            <div class="blockchain-info">
+                <p>Medical records are encrypted</p>
+                <p>Data is securely stored and centrally accessible</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="container">
+            <h2 class="section-title">Doctor Services</h2>
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <img src="/api/placeholder/100/80" alt="Calendar Management">
+                    </div>
+                    <div class="service-content">
+                        <h3>Appointment Management</h3>
+                        <p>Schedule, view and manage your patient appointments efficiently. Get notifications and sync with your personal calendar.</p>
+                        <a href="#" class="btn">Access Calendar</a>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <img src="/api/placeholder/100/80" alt="Telemedicine">
+                    </div>
+                    <div class="service-content">
+                        <h3>Telemedicine Services</h3>
+                        <p>Conduct secure video consultations with patients from anywhere. Access medical records during the session.</p>
+                        <a href="#" class="btn">Start Consultation</a>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <img src="/api/placeholder/100/80" alt="Medical Records">
+                    </div>
+                    <div class="service-content">
+                        <h3>Patient Record Access</h3>
+                        <p>View complete patient medical history, test results, and previous treatments with secure blockchain verification.</p>
+                        <a href="#" class="btn">View Records</a>
+                    </div>
+                </div>
+
+                <!-- Service 4 (Lock Records) -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <img src="/api/placeholder/100/80" alt="Lock">
+                    </div>
+                    <div class="service-content">
+                        <h3>Lock Medical Records</h3>
+                        <p>Securely lock patient medical records after completion to prevent unauthorized alterations and ensure data integrity.</p>
+                        <a href="#" class="btn lock-btn">Lock Records</a>
+                    </div>
+                </div>
+
+                <!-- Service 5 (Unlock Records) -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <img src="/api/placeholder/100/80" alt="Unlock">
+                    </div>
+                    <div class="service-content">
+                        <h3>Unlock Medical Records</h3>
+                        <p>Temporarily unlock patient records for authorized modifications. Contains verification and audit trail functionality.</p>
+                        <a href="#" class="btn unlock-btn">Unlock Records</a>
+                    </div>
+                </div>
+
+                <!-- Service 6 (Update Records) -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <img src="/api/placeholder/100/80" alt="Update">
+                    </div>
+                    <div class="service-content">
+                        <h3>Update Medical Records</h3>
+                        <p>Make changes to patient records with complete version history. All updates are securely timestamped on the blockchain.</p>
+                        <a href="#" class="btn">Update Records</a>
+                    </div>
+                </div>
+
+                <!-- Service 7 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <img src="/api/placeholder/100/80" alt="Billing">
+                    </div>
+                    <div class="service-content">
+                        <h3>Billing & Payments</h3>
+                        <p>Generate and send medical bills with payment instructions securely through blockchain transactions.</p>
+                        <a href="#" class="btn">Billing Center</a>
+                    </div>
+                </div>
+
+                <!-- Service 8 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <img src="/api/placeholder/100/80" alt="Prescription">
+                    </div>
+                    <div class="service-content">
+                        <h3>Prescriptions & Lab Orders</h3>
+                        <p>Write prescriptions and order lab tests digitally with secure verification and pharmacy integration.</p>
+                        <a href="#" class="btn">Write Prescription</a>
+                    </div>
+                </div>
+
+                <!-- Service 9 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <img src="/api/placeholder/100/80" alt="Preventive Care">
+                    </div>
+                    <div class="service-content">
+                        <h3>Preventive Care</h3>
+                        <p>Schedule and manage preventive screenings and early disease detection programs for your patients.</p>
+                        <a href="#" class="btn">Screening Tools</a>
+                    </div>
+                </div>
+
+                <!-- Service 10 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <img src="/api/placeholder/100/80" alt="Remote Monitoring">
+                    </div>
+                    <div class="service-content">
+                        <h3>Remote Patient Monitoring</h3>
+                        <p>Track patient vitals and health metrics remotely for continuous care between appointments.</p>
+                        <a href="#" class="btn">Monitor Patients</a>
+                    </div>
+                </div>
+
+                <!-- Service 11 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <img src="/api/placeholder/100/80" alt="Reports">
+                    </div>
+                    <div class="service-content">
+                        <h3>Reports & Analytics</h3>
+                        <p>Generate performance reports, patient statistics, and practice analytics to optimize your medical services.</p>
+                        <a href="#" class="btn">View Reports</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About MedID</h3>
+                    <ul>
+                        <li><a href="#">Our Mission</a></li>
+                        <li><a href="#">Blockchain Technology</a></li>
+                        <li><a href="#">Team</a></li>
+                        <li><a href="#">Partners</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">For Doctors</a></li>
+                        <li><a href="#">For Patients</a></li>
+                        <li><a href="#">For Hospitals</a></li>
+                        <li><a href="#">For Laboratories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Training & Resources</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">HIPAA Compliance</a></li>
+                        <li><a href="#">Data Security</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 MedID. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

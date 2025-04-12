@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedID - Doctor Unlock</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+        }
+        
+        .navbar {
+            background-color: white;
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .logo {
+            color: #0097B2;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .connect-btn {
+            background-color: #0097B2;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .connect-btn img {
+            width: 16px;
+            height: 16px;
+        }
+        
+        .hero {
+            background-color: #0079A9;
+            color: white;
+            padding: 50px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .unlock-container {
+            max-width: 800px;
+            margin: 40px auto;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .unlock-container h2 {
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .unlock-description {
+            color: #555;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .unlock-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .form-group label {
+            font-weight: bold;
+            color: #444;
+        }
+        
+        .form-group input {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .form-info {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .unlock-btn {
+            background-color: #0097B2;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .unlock-btn:hover {
+            background-color: #007a90;
+        }
+        
+        .security-info {
+            margin-top: 30px;
+            background-color: #f0f8ff;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #0097B2;
+        }
+        
+        .security-info h3 {
+            color: #0097B2;
+            margin-bottom: 10px;
+        }
+        
+        .security-info p {
+            color: #555;
+            line-height: 1.5;
+        }
+        
+        .block-visualization {
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        .block-chain {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .block {
+            background-color: #0097B2;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            min-width: 80px;
+        }
+        
+        .arrow {
+            display: flex;
+            align-items: center;
+            color: #666;
+        }
+        
+        .block-info {
+            text-align: center;
+            color: #555;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="#" class="logo">MedID</a>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Services</a>
+            <a href="#">Blockchain Health</a>
+            <a href="#">Doctor Services</a>
+        </div>
+        <button class="connect-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12Z" fill="white"/>
+                <path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z" fill="white"/>
+            </svg>
+            Connect Eternl
+        </button>
+    </nav>
+    
+    <section class="hero">
+        <h1>Doctor Record Access</h1>
+        <p>Securely unlock patient medical records with blockchain verification</p>
+    </section>
+    
+    <div class="unlock-container">
+        <h2>Unlock Patient Records</h2>
+        
+        <div class="unlock-description">
+            <p>As a healthcare provider, you can access patient medical records securely through our blockchain-based system. Enter the transaction hash (txhash) provided by the patient or system to unlock and decrypt the medical records. This ensures that only authorized personnel can access sensitive healthcare information while maintaining a transparent audit trail.</p>
+        </div>
+        
+        <form class="unlock-form">
+            <div class="form-group">
+                <label for="txhash">Transaction Hash (txhash)</label>
+                <input type="text" id="txhash" name="txhash" placeholder="Enter transaction hash here..." required>
+                <span class="form-info">The transaction hash serves as a unique identifier on the blockchain for the specific medical record</span>
+            </div>
+            
+            <button type="submit" class="unlock-btn">Unlock Medical Records</button>
+        </form>
+        
+        <div class="security-info">
+            <h3>Security Information</h3>
+            <p>All access attempts are recorded on the blockchain for transparency and accountability. Patient data remains encrypted and is only decrypted temporarily for authorized viewing. Your account credentials and this transaction will be securely logged in compliance with healthcare regulations and data protection laws.</p>
+        </div>
+        
+        <div class="block-visualization">
+            <div class="block-chain">
+                <div class="block">Block #1</div>
+                <div class="arrow">→</div>
+                <div class="block">Block #2</div>
+                <div class="arrow">→</div>
+                <div class="block">Block #3</div>
+                <div class="arrow">→</div>
+                <div class="block">Block #n</div>
+            </div>
+            <div class="block-info">
+                <p>Medical records are encrypted</p>
+                <p>Data is securely stored and centrally accessible</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
